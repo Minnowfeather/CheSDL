@@ -4,7 +4,7 @@
 
 class ChessBoard : public Object {
 	public:
-		ChessBoard();
+		ChessBoard(SDL_Renderer* rend);
 		void movePiece(ChessPiece* src, ChessPiece* tgt);
 		ChessPiece* getPiece(int x, int y);
 		std::unordered_set<ChessPiece*> getValidMoves(ChessPiece* src);
@@ -12,4 +12,4 @@ class ChessBoard : public Object {
 	private:
 		ChessPiece* board[8][8];
 		void getIndex(ChessPiece* find, int& x, int& y);
-}
+};

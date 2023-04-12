@@ -1,7 +1,7 @@
 #include "ChessBoard.h"
 #include <unordered_set>
 
-ChessBoard::ChessBoard()
+ChessBoard::ChessBoard(SDL_Renderer* rend)
 	: Object(rend,"chessboard",0,0,"board.png"){
 
 }
@@ -12,11 +12,15 @@ void movePiece(ChessPiece* src, ChessPiece* tgt){
 	tgt = tmp;
 }
 
-ChessPiece* getPiece(int x, int y){
+ChessPiece* ChessBoard::getPiece(int x, int y){
 	return board[x][y];
 }
 
-std::unordered_set<ChessPiece*> getValidMoves(ChessPiece* src){
+void ChessBoard::getIndex(ChessPiece* find, int& x, int& y)
+{
+
+}
+std::unordered_set<ChessPiece*> ChessBoard::getValidMoves(ChessPiece* src){
 	int x,y;
 	getIndex(src,x,y);
 
