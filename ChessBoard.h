@@ -8,6 +8,7 @@ class ChessBoard : public Object {
 		void movePiece(ChessPiece* src, ChessPiece* tgt);
 		ChessPiece* getPiece(int x, int y);
 		std::unordered_set<ChessPiece*> getValidMoves(ChessPiece* src);
+		void flipSide();
 		~ChessBoard();
 	private:
 		ChessPiece* board[8][8];

@@ -24,9 +24,9 @@ std::unordered_set<ChessPiece*> ChessBoard::getValidMoves(ChessPiece* src){
 	int x,y;
 	getIndex(src,x,y);
 
-	unordered_set<ChessPiece*> output;
+	std::unordered_set<ChessPiece*> output;
 	switch(src->type){
-		case 'p': // pawn
+		case 'p':{ // pawn
 			if(y < 7){
 				ChessPiece* tmp = getPiece(x,y+1); // move forward
 				if(tmp == nullptr){
@@ -52,7 +52,8 @@ std::unordered_set<ChessPiece*> ChessBoard::getValidMoves(ChessPiece* src){
 
 			}
 			break;
-		case 'r': // rook
+			}
+		case 'r':{ // rook
 			int i = x + 1;
 			bool firstPieceFound = false;
 			while(i < 8 && !firstPieceFound){ // viable moves to the right
@@ -110,13 +111,14 @@ std::unordered_set<ChessPiece*> ChessBoard::getValidMoves(ChessPiece* src){
 				i--;
 			}
 			break;
-		case 'k': // king
+			}
+		case 'k':{ // king
 			for(int i = x-1; i <= x+1; i++){
 				for(int j = y-1; j <= y+1; j++){ // 3x3 square
 					if(
 						i >= 8 || y >= 8 ||
 						i < 0 || y < 0 ||
-						i = x || j = y
+						i == x || j == y
 					  ) {
 						// dont add if OOB or the king itself
 					} else {
@@ -125,16 +127,32 @@ std::unordered_set<ChessPiece*> ChessBoard::getValidMoves(ChessPiece* src){
 				}
 			}
 			break;
-		case 'n': // knight
-			if(
+			 }
+		case 'n':{ // knight
+			if(true){
+			}
 			break;
-		case 'q': // queen
+			}
+		case 'q':{ // queen
 			break;
-		case 'b': // bishop
+			}
+		case 'b':{ // bishop
 			break;
+			}
 
 	}
 }
+
+void ChessBoard::flipSide(){
+	for(int i = 0; i < 4; i++){
+		for(int j = 0; j < 8; j++){
+			ChessPiece* tmp = board[i][j];
+			board[i][j] = board[7-i][j];
+			board[7-i][j] = tmp;
+		}
+	}
+}
+
 
 ChessBoard::~ChessBoard()
 {
